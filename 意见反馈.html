@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>意见反馈</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", sans-serif;
+      background-color: #f4f6f9;
+    }
+    .header {
+      background-color: #2b68c6;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header .logo img {
+      height: 40px;
+    }
+    .menu ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    .menu ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    .top-right {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+    .dropdown {
+      position: relative;
+      cursor: pointer;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      display: none;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu em {
+      display: block;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-style: normal;
+    }
+    .dropdown-menu em:hover {
+      background: #2b68c6;
+      color: white;
+    }
+    main.content {
+      padding: 30px;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      margin-top: 20px;
+      background-color: #2b68c6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #1f4fa0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <a href="dashboard.html"><img src="https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/logo1010.png" alt="Logo"></a>
+    </div>
+    <div class="menu">
+      <ul>
+        <li><a href="dashboard.html">首页</a></li>
+        <li><a href="course.html">课程管理</a></li>
+        <li><a href="faq.html">常见问题</a></li>
+        <li><a href="tutorial.html">操作教程</a></li>
+        <li><a href="feedback.html">意见反馈</a></li>
+      </ul>
+    </div>
+    <div class="top-right">
+      <div class="dropdown" id="helpDropdown">
+        <span>帮助 ▼</span>
+        <div class="dropdown-menu">
+          <em onclick="location.href='faq.html'">常见问题</em>
+          <em onclick="location.href='tutorial.html'">操作教程</em>
+          <em onclick="location.href='feedback.html'">意见反馈</em>
+        </div>
+      </div>
+      <div class="dropdown" id="companyDropdown">
+        <span>如东昂蕾教育培训有... ▼</span>
+        <div class="dropdown-menu">
+          <em>信息管理</em>
+          <em id="logoutBtn">退出</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <main class="content">
+    <h1>意见反馈</h1>
+    <p>请填写以下信息并提交您的意见或建议：</p>
+    <form>
+      <label for="name">您的姓名：</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">联系方式（邮箱/电话）：</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="feedback">反馈内容：</label>
+      <textarea id="feedback" name="feedback" rows="6" required></textarea>
+
+      <button type="submit">提交反馈</button>
+    </form>
+  </main>
+
+  <script>
+    // Dropdown toggle
+    document.querySelectorAll('.dropdown').forEach(drop => {
+      drop.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelectorAll('.dropdown').forEach(d => {
+          if (d !== drop) d.classList.remove('open');
+        });
+        drop.classList.toggle('open');
+      });
+    });
+
+    window.addEventListener('click', () => {
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      alert('执行退出操作');
+    });
+  </script>
+</body>
+</html>

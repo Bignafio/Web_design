@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>课程管理 - 校外活动平台</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f0f4f8; }
+        header {
+            background-color: #b8cde8;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 { font-size: 20px; }
+        nav { display: flex; gap: 20px; }
+        .container { padding: 30px; }
+        h2 { margin: 20px 0 10px; color: #333; }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        input, select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            padding: 8px 16px;
+            background-color: #78b4eb;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+        .btn:hover { background-color: #5a9bd8; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+        th { background-color: #e9f1fa; }
+        tr:hover { background-color: #f5faff; }
+    </style>
+</head>
+<body>
+  <header>
+      <h1>课程管理 - 校外活动平台</h1>
+      <nav>
+          <a href="index1.html">返回首页</a>
+      </nav>
+  </header>
+
+
+<div class="container">
+    <h2>添加新课程</h2>
+    <form id="courseForm">
+        <input type="text" id="courseName" placeholder="课程名称" required>
+        <input type="text" id="courseTime" placeholder="上课时间" required>
+        <input type="text" id="teacher" placeholder="教师姓名" required>
+        <button type="submit" class="btn">添加课程</button>
+    </form>
+
+    <h2>课程列表</h2>
+    <table id="courseTable">
+        <thead>
+            <tr>
+                <th>课程名称</th>
+                <th>上课时间</th>
+                <th>教师</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>美术基础</td>
+                <td>每周一 14:00</td>
+                <td>李老师</td>
+                <td>
+                    <button class="btn">编辑</button>
+                    <button class="btn" onclick="deleteRow(this)">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const form = document.getElementById('courseForm');
+    const table = document.getElementById('courseTable').getElementsByTagName('tbody')[0];
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = document.getElementById('courseName').value;
+        const time = document.getElementById('courseTime').value;
+        const teacher = document.getElementById('teacher').value;
+
+        const row = table.insertRow();
+        row.innerHTML = `
+            <td>${name}</td>
+            <td>${time}</td>
+            <td>${teacher}</td>
+            <td>
+                <button class="btn">编辑</button>
+                <button class="btn" onclick="deleteRow(this)">删除</button>
+            </td>
+        `;
+
+        form.reset();
+    });
+
+    function deleteRow(button) {
+        const row = button.parentNode.parentNode;
+        row.remove();
+    }
+</script>
+</body>
+</html>

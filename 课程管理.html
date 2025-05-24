@@ -1,129 +1,269 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>课程管理 - 校外活动平台</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background-color: #f0f4f8; }
-        header {
-            background-color: #b8cde8;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 { font-size: 20px; }
-        nav { display: flex; gap: 20px; }
-        .container { padding: 30px; }
-        h2 { margin: 20px 0 10px; color: #333; }
+  <meta charset="UTF-8" />
+  <title>课程管理 - 校外活动平台</title>
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f4f6f9;
+    }
+    .header {
+      position: relative;
+      background: #2b68c6;
+      color: white;
+      height: 60px;
+      line-height: 60px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header .logo img {
+      height: 40px;
+    }
+    .header .menu {
+      flex-grow: 1;
+      margin-left: 40px;
+    }
+    .header .menu ul {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: flex;
+      gap: 30px;
+    }
+    .header .menu ul li {
+      cursor: pointer;
+    }
+    .header .top-right {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      position: relative;
+    }
+    .dropdown {
+      position: relative;
+      cursor: pointer;
+    }
+    .dropdown > span {
+      user-select: none;
+    }
+    .dropdown > .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      color: #333;
+      border: 1px solid #ccc;
+      min-width: 140px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 1000;
+    }
+    .dropdown > .dropdown-menu em {
+      display: block;
+      padding: 8px 15px;
+      border-bottom: 1px solid #eee;
+      font-style: normal;
+      cursor: pointer;
+    }
+    .dropdown > .dropdown-menu em:hover {
+      background: #2b68c6;
+      color: white;
+    }
+    .dropdown.open > .dropdown-menu {
+      display: block;
+    }
+    .customer-btn {
+      background: url('https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/kf_tool.png') no-repeat 10px center;
+      padding-left: 40px;
+      height: 36px;
+      line-height: 36px;
+      background-size: 24px 24px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
 
-        form {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        input, select {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .btn {
-            padding: 8px 16px;
-            background-color: #78b4eb;
-            border: none;
-            border-radius: 4px;
-            color: white;
-            cursor: pointer;
-        }
-        .btn:hover { background-color: #5a9bd8; }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 12px;
-            text-align: left;
-        }
-        th { background-color: #e9f1fa; }
-        tr:hover { background-color: #f5faff; }
-    </style>
+    .container {
+      padding: 30px;
+    }
+    h2 {
+      margin: 20px 0 10px;
+      color: #333;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    input, select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .btn {
+      padding: 8px 16px;
+      background-color: #78b4eb;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #5a9bd8;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #e9f1fa;
+    }
+    tr:hover {
+      background-color: #f5faff;
+    }
+  </style>
 </head>
 <body>
-  <header>
-      <h1>课程管理 - 校外活动平台</h1>
-      <nav>
-          <a href="index1.html">返回首页</a>
-      </nav>
-  </header>
 
+<!-- Updated header -->
+<div class="header">
+  <div class="logo">
+    <a href="#"><img src="https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/logo1010.png" alt="全国校外培训统一监管平台"></a>
+  </div>
+  <div class="menu">
+    <ul>
+    <li><a href="dashboard.html" style="color: white; text-decoration: none;">首页</a></li>
+      <li style="font-weight: bold;">课程管理</li>
+      <li>报名管理</li>
+      <li>数据统计</li>
+      <li>系统设置</li>
+    </ul>
+  </div>
+  <div class="top-right">
+    <div class="dropdown" id="helpDropdown">
+      <span>帮助 ▼</span>
+      <div class="dropdown-menu">
+    <em onclick="window.location.href='faq.html'">常见问题</em>
+    <em>操作教程</em>
+    <em onclick="window.location.href='意见反馈.html'">意见反馈</em>
+  </div>
 
-<div class="container">
-    <h2>添加新课程</h2>
-    <form id="courseForm">
-        <input type="text" id="courseName" placeholder="课程名称" required>
-        <input type="text" id="courseTime" placeholder="上课时间" required>
-        <input type="text" id="teacher" placeholder="教师姓名" required>
-        <button type="submit" class="btn">添加课程</button>
-    </form>
-
-    <h2>课程列表</h2>
-    <table id="courseTable">
-        <thead>
-            <tr>
-                <th>课程名称</th>
-                <th>上课时间</th>
-                <th>教师</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>美术基础</td>
-                <td>每周一 14:00</td>
-                <td>李老师</td>
-                <td>
-                    <button class="btn">编辑</button>
-                    <button class="btn" onclick="deleteRow(this)">删除</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
+    <button class="customer-btn" id="customerServiceBtn">培训机构官方客服</button>
+    <div class="dropdown" id="companyDropdown">
+      <span>如东昂蕾教育培训有... ▼</span>
+      <div class="dropdown-menu">
+        <em>信息管理</em>
+        <em id="logoutBtn">退出</em>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- Main content -->
+<div class="container">
+  <h2>添加新课程</h2>
+  <form id="courseForm">
+    <input type="text" id="courseName" placeholder="课程名称" required>
+    <input type="text" id="courseTime" placeholder="上课时间" required>
+    <input type="text" id="teacher" placeholder="教师姓名" required>
+    <button type="submit" class="btn">添加课程</button>
+  </form>
+
+  <h2>课程列表</h2>
+  <table id="courseTable">
+    <thead>
+      <tr>
+        <th>课程名称</th>
+        <th>上课时间</th>
+        <th>教师</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>美术基础</td>
+        <td>每周一 14:00</td>
+        <td>李老师</td>
+        <td>
+          <button class="btn">编辑</button>
+          <button class="btn" onclick="deleteRow(this)">删除</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Dropdown logic -->
 <script>
-    const form = document.getElementById('courseForm');
-    const table = document.getElementById('courseTable').getElementsByTagName('tbody')[0];
+  function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    const isOpen = dropdown.classList.contains('open');
+    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+    if (!isOpen) dropdown.classList.add('open');
+  }
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const name = document.getElementById('courseName').value;
-        const time = document.getElementById('courseTime').value;
-        const teacher = document.getElementById('teacher').value;
+  document.getElementById('helpDropdown').addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDropdown('helpDropdown');
+  });
 
-        const row = table.insertRow();
-        row.innerHTML = `
-            <td>${name}</td>
-            <td>${time}</td>
-            <td>${teacher}</td>
-            <td>
-                <button class="btn">编辑</button>
-                <button class="btn" onclick="deleteRow(this)">删除</button>
-            </td>
-        `;
+  document.getElementById('companyDropdown').addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDropdown('companyDropdown');
+  });
 
-        form.reset();
-    });
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    window.location.href = "login.html";
+  });
 
-    function deleteRow(button) {
-        const row = button.parentNode.parentNode;
-        row.remove();
-    }
+  document.getElementById('customerServiceBtn').addEventListener('click', () => {
+    alert('打开培训机构官方客服窗口');
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+  });
+
+  const form = document.getElementById('courseForm');
+  const table = document.getElementById('courseTable').getElementsByTagName('tbody')[0];
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('courseName').value;
+    const time = document.getElementById('courseTime').value;
+    const teacher = document.getElementById('teacher').value;
+
+    const row = table.insertRow();
+    row.innerHTML = `
+      <td>${name}</td>
+      <td>${time}</td>
+      <td>${teacher}</td>
+      <td>
+        <button class="btn">编辑</button>
+        <button class="btn" onclick="deleteRow(this)">删除</button>
+      </td>
+    `;
+
+    form.reset();
+  });
+
+  function deleteRow(button) {
+    const row = button.parentNode.parentNode;
+    row.remove();
+  }
 </script>
 </body>
 </html>

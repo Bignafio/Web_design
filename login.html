@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>登录 - 校外活动平台</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body, html {
       height: 100%;
       font-family: "Microsoft YaHei", sans-serif;
@@ -16,6 +21,7 @@
       justify-content: center;
       align-items: center;
     }
+
     .login-container {
       background-color: rgba(255,255,255,0.95);
       padding: 40px;
@@ -25,7 +31,12 @@
       max-width: 400px;
       text-align: center;
     }
-    .login-container h2 { margin-bottom: 20px; color: #2a6ec8; }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #2a6ec8;
+    }
+
     .login-container input {
       width: 100%;
       padding: 12px;
@@ -33,6 +44,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
     .remember-forgot {
       display: flex;
       justify-content: space-between;
@@ -40,14 +52,22 @@
       font-size: 14px;
       margin: 10px 0 20px;
     }
-    .remember-forgot input { margin-right: 5px; }
+
+    .remember-forgot label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .remember-forgot a, .register-link {
       color: #2a6ec8;
       text-decoration: none;
     }
+
     .remember-forgot a:hover, .register-link:hover {
       text-decoration: underline;
     }
+
     .login-container button {
       width: 100%;
       padding: 12px;
@@ -58,14 +78,17 @@
       font-size: 16px;
       cursor: pointer;
     }
+
     .login-container button:hover {
       background-color: #1f5bb5;
     }
+
     .register-link {
       display: block;
       margin-top: 15px;
       font-size: 14px;
     }
+
     footer {
       position: fixed;
       bottom: 0;
@@ -86,7 +109,10 @@
     <input type="password" id="password" placeholder="密码" />
 
     <div class="remember-forgot">
-      <label><input type="checkbox" id="rememberMe" /> 记住我</label>
+      <label for="rememberMe">
+        记住我
+        <input type="checkbox" id="rememberMe" />
+      </label>
       <a href="#">忘记密码？</a>
     </div>
 
@@ -108,7 +134,10 @@
         alert("登录成功！");
         if (remember) {
           localStorage.setItem("rememberedUser", username);
+        } else {
+          localStorage.removeItem("rememberedUser");
         }
+        window.location.href = "dashboard.html";
       } else {
         alert("用户名或密码错误。");
       }
@@ -119,6 +148,11 @@
       if (remembered) {
         document.getElementById("username").value = remembered;
         document.getElementById("rememberMe").checked = true;
+      }
+
+      const defaultUsers = { "admin": "123456", "user": "password" };
+      if (!localStorage.getItem("users")) {
+        localStorage.setItem("users", JSON.stringify(defaultUsers));
       }
     };
   </script>

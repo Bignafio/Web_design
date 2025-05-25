@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>快速建课 - 校外活动平台</title>
   <style>
     body, html {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       font-family: "Microsoft YaHei", sans-serif;
-      background: #f4f6f9;
+      background-color: #f4f6f9;
     }
     .header {
-      position: relative;
       background: #2b68c6;
       color: white;
       height: 60px;
-      line-height: 60px;
-      padding: 0 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0 20px;
     }
     .header .logo img {
       height: 40px;
@@ -29,14 +28,16 @@
     }
     .header .menu ul {
       list-style: none;
-      margin: 0; padding: 0;
       display: flex;
       gap: 30px;
+      margin: 0;
+      padding: 0;
     }
     .header .menu ul li {
       cursor: pointer;
+      color: white;
     }
-    .header .top-right {
+    .top-right {
       display: flex;
       align-items: center;
       gap: 25px;
@@ -46,20 +47,20 @@
       position: relative;
       cursor: pointer;
     }
-    .dropdown > span {
-      user-select: none;
-    }
-    .dropdown > .dropdown-menu {
+    .dropdown-menu {
       position: absolute;
       top: 100%;
       right: 0;
       background: white;
-      color: #333;
-      border: 1px solid #ccc;
-      min-width: 140px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       display: none;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       z-index: 1000;
+      min-width: 140px;
+      color: black;
+    }
+    .dropdown.open .dropdown-menu {
+      display: block;
     }
     .dropdown > .dropdown-menu em {
       display: block;
@@ -68,67 +69,57 @@
       font-style: normal;
       cursor: pointer;
     }
-    .dropdown > .dropdown-menu em:hover {
-      background: #2b68c6;
+    .dropdown-menu em:hover {
+      background-color: #2b68c6;
       color: white;
-    }
-    .dropdown.open > .dropdown-menu {
-      display: block;
     }
     .customer-btn {
       background: url('https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/kf_tool.png') no-repeat 10px center;
+      background-size: 24px 24px;
       padding-left: 40px;
       height: 36px;
       line-height: 36px;
-      background-size: 24px 24px;
       color: white;
       border: none;
       cursor: pointer;
       font-size: 14px;
     }
-    .logout-btn {
-      background-color: transparent;
-      border: 1px solid #fff;
-      color: #fff;
-      padding: 5px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-    }
 
     .container {
+      max-width: 800px;
+      margin: 30px auto;
       padding: 30px;
       background-color: white;
-      margin: 30px auto;
-      width: 80%;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     h2 {
       margin-bottom: 20px;
-      font-size: 22px;
+      color: #2b68c6;
     }
     label {
       display: block;
-      margin: 10px 0 5px;
+      margin-top: 15px;
+      font-weight: bold;
     }
-    input, textarea, select {
+    input, select, textarea {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
+      margin-top: 5px;
       border: 1px solid #ccc;
+      border-radius: 4px;
     }
     button {
+      margin-top: 20px;
       padding: 10px 20px;
-      background-color: #78b4eb;
+      background-color: #2b68c6;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #5898d3;
+      background-color: #1e4ea8;
     }
   </style>
 </head>
@@ -137,15 +128,17 @@
 <!-- Header -->
 <div class="header">
   <div class="logo">
-    <a href="dashboard.html"><img src="https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/logo1010.png" alt="全国校外培训统一监管平台"></a>
+    <a href="dashboard.html">
+      <img src="https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/logo1010.png" alt="平台logo">
+    </a>
   </div>
   <div class="menu">
     <ul>
       <li onclick="location.href='dashboard.html'">首页</li>
-      <li onclick="location.href='course.html'">课程管理</li>
-      <li onclick="location.href='signup.html'">报名管理</li>
-      <li onclick="location.href='stats.html'">数据统计</li>
-      <li onclick="location.href='settings.html'">系统设置</li>
+      <li onclick="location.href='通知管理.html'">通知管理</li>
+      <li onclick="location.href='经营管理.html'">经营管理</li>
+      <li onclick="location.href='执法监控.html'">执法监控</li>
+      <li onclick="location.href='风险预警.html'">风险预警</li>
     </ul>
   </div>
   <div class="top-right">
@@ -161,40 +154,40 @@
     <div class="dropdown" id="companyDropdown">
       <span>如东昂蕾教育培训有... ▼</span>
       <div class="dropdown-menu">
-          <em>信息管理</em>
-        <em id="logoutBtn">退出</em>
+        <em>信息管理</em>
+        <em onclick="location.href='login.html'">退出</em>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Main content -->
+<!-- Content -->
 <div class="container">
   <h2>快速建课</h2>
   <form id="courseForm">
     <label for="course-name">课程名称</label>
-    <input type="text" id="course-name" name="course-name" required>
+    <input type="text" id="course-name" required />
 
     <label for="description">课程简介</label>
-    <textarea id="description" name="description" rows="4"></textarea>
+    <textarea id="description" rows="4"></textarea>
 
     <label for="teacher">授课教师</label>
-    <input type="text" id="teacher" name="teacher">
+    <input type="text" id="teacher" />
 
     <label for="category">课程类别</label>
-    <select id="category" name="category">
+    <select id="category">
       <option value="">请选择</option>
-      <option value="art">艺术</option>
-      <option value="science">科学</option>
-      <option value="sports">体育</option>
-      <option value="language">语言</option>
+      <option value="艺术">艺术</option>
+      <option value="科学">科学</option>
+      <option value="体育">体育</option>
+      <option value="语言">语言</option>
     </select>
 
     <label for="start-date">开始日期</label>
-    <input type="date" id="start-date" name="start-date">
+    <input type="date" id="start-date" />
 
     <label for="duration">课程时长（小时）</label>
-    <input type="number" id="duration" name="duration" min="1">
+    <input type="number" id="duration" min="1" />
 
     <button type="submit">提交课程</button>
   </form>
@@ -202,51 +195,45 @@
 
 <script>
   // Dropdown logic
-  function toggleDropdown(id) {
-    const dropdown = document.getElementById(id);
-    const isOpen = dropdown.classList.contains('open');
-    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-    if (!isOpen) dropdown.classList.add('open');
-  }
-
-  document.getElementById('helpDropdown').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleDropdown('helpDropdown');
+  document.querySelectorAll('.dropdown').forEach(drop => {
+    drop.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== drop) d.classList.remove('open');
+      });
+      drop.classList.toggle('open');
+    });
   });
 
-  document.getElementById('companyDropdown').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleDropdown('companyDropdown');
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
   });
 
   document.getElementById('customerServiceBtn').addEventListener('click', () => {
     alert('打开培训机构官方客服窗口');
   });
 
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-    window.location.href = "login.html";
-  });
+  // Save course to localStorage
+  document.getElementById('courseForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-  });
+    const course = {
+      name: document.getElementById('course-name').value,
+      description: document.getElementById('description').value,
+      teacher: document.getElementById('teacher').value,
+      category: document.getElementById('category').value,
+      startDate: document.getElementById('start-date').value,
+      duration: document.getElementById('duration').value
+    };
 
-  // Form submit logic
-  document.getElementById('courseForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    const courses = JSON.parse(localStorage.getItem('courses') || '[]');
+    courses.push(course);
+    localStorage.setItem('courses', JSON.stringify(courses));
 
-    const name = document.getElementById('course-name').value.trim();
-    if (!name) {
-      alert('请输入课程名称');
-      return;
-    }
-
-    alert('课程提交成功！即将返回首页...');
-    this.reset();
-
+    alert('课程提交成功！跳转中...');
     setTimeout(() => {
-      window.location.href = 'dashboard.html';
-    }, 1500);
+      window.location.href = '课程管理.html';
+    }, 1000);
   });
 </script>
 

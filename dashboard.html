@@ -93,13 +93,20 @@
       margin-bottom: 20px;
     }
     .card {
-      background-color: #ffffff;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-      flex: 1;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
     .status {
       display: flex;
       gap: 20px;
@@ -115,11 +122,19 @@
       font-weight: bold;
     }
     .chart-section {
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      height: 200px;
-    }
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    height: auto;
+    max-width: 600px;
+    margin: auto;
+  }
+  .chart-section canvas {
+    width: 100% !important;
+    height: 250px !important;
+  }
+
+
   </style>
 </head>
 <body>
@@ -130,14 +145,16 @@
     <a href="#"><img src="https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/logo1010.png" alt="全国校外培训统一监管平台"></a>
   </div>
   <div class="menu">
-    <ul>
-      <li>首页</li>
-      <li>课程管理</li>
-      <li>报名管理</li>
-      <li>数据统计</li>
-      <li>系统设置</li>
-    </ul>
-  </div>
+  <ul>
+    <li><a href="dashboard.html" style="color: white; text-decoration: none;">首页</a></li>
+    <li><a href="通知管理.html" style="color: white; text-decoration: none;">通知管理</a></li>
+    <li><a href="经营管理.html" style="color: white; text-decoration: none;">经营管理</a></li>
+    <li><a href="执法监控.html" style="color: white; text-decoration: none;">执法监控</a></li>
+    <li><a href="风险预警.html" style="color: white; text-decoration: none;">风险预警</a></li>
+  </ul>
+
+</div>
+
   <div class="top-right">
     <div class="dropdown" id="helpDropdown">
       <span>帮助 ▼</span>
@@ -160,9 +177,9 @@
 <!-- Main content -->
 <div class="container">
   <div class="quick-actions">
-    <div class="card">快速建课（icon）</div>
-    <div class="card">课程管理（icon）</div>
-    <div class="card">消息管理（icon）</div>
+    <div class="card" onclick="window.location.href='快速建课.html'">快速建课（icon）</div>
+    <div class="card" onclick="window.location.href='课程管理.html'">课程管理（icon）</div>
+    <div class="card" onclick="window.location.href='通知管理.html'">消息管理（icon）</div>
   </div>
 
   <h2>机构状态</h2>
@@ -183,8 +200,9 @@
 
   <h2>经营数据</h2>
   <div class="chart-section">
-    <p>图表展示（以后可以接 chart.js）</p>
-  </div>
+  <canvas id="dashboardChart"></canvas>
+</div>
+
 </div>
 
 <script>
@@ -216,6 +234,48 @@
   document.addEventListener('click', () => {
     document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
   });
+</script>
+<!-- Chart.js CDN -->
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('dashboardChart').getContext('2d');
+  const chartData = {
+    labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+    datasets: [{
+      label: '课程注册数',
+      data: [12, 19, 13, 15, 22, 30],
+      backgroundColor: '#2b68c6'
+    }]
+  };
+
+  const dashboardChart = new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: {
+      responsive: true,
+      animation: false,
+      plugins: {
+        legend: {
+          labels: { color: '#333' }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#333' } },
+        y: { ticks: { color: '#333' }, beginAtZero: true }
+      }
+    }
+  });
+
+  // Fake live update every 2 seconds
+  setInterval(() => {
+    const newVal = Math.floor(Math.random() * 30) + 5;
+    chartData.datasets[0].data.shift();
+    chartData.datasets[0].data.push(newVal);
+
+    dashboardChart.update();
+  }, 2000);
 </script>
 
 </body>

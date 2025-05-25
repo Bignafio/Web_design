@@ -5,12 +5,12 @@
   <title>课程管理 - 校外活动平台</title>
   <style>
     body, html {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       font-family: "Microsoft YaHei", sans-serif;
       background: #f4f6f9;
     }
     .header {
-      position: relative;
       background: #2b68c6;
       color: white;
       height: 60px;
@@ -29,18 +29,19 @@
     }
     .header .menu ul {
       list-style: none;
-      margin: 0; padding: 0;
       display: flex;
       gap: 30px;
+      padding: 0;
+      margin: 0;
     }
     .header .menu ul li {
+      color: white;
       cursor: pointer;
     }
-    .header .top-right {
+    .top-right {
       display: flex;
-      align-items: center;
       gap: 25px;
-      position: relative;
+      align-items: center;
     }
     .dropdown {
       position: relative;
@@ -77,10 +78,10 @@
     }
     .customer-btn {
       background: url('https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/kf_tool.png') no-repeat 10px center;
+      background-size: 24px 24px;
       padding-left: 40px;
       height: 36px;
       line-height: 36px;
-      background-size: 24px 24px;
       color: white;
       border: none;
       cursor: pointer;
@@ -88,39 +89,40 @@
     }
 
     .container {
+      max-width: 1000px;
+      margin: 30px auto;
       padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    h2 {
-      margin: 20px 0 10px;
-      color: #333;
-    }
-    form {
+    .button-row {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+      justify-content: space-between;
       flex-wrap: wrap;
+      margin-bottom: 30px;
+      gap: 20px;
     }
-    input, select {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .btn {
-      padding: 8px 16px;
-      background-color: #78b4eb;
-      border: none;
-      border-radius: 4px;
+    .button-row button {
+      flex: 1 1 calc(25% - 20px);
+      min-width: 200px;
+      padding: 16px;
+      font-size: 16px;
+      background-color: #2b68c6;
       color: white;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-    .btn:hover {
-      background-color: #5a9bd8;
+    .button-row button:hover {
+      background-color: #1f4fa0;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 10px;
     }
     th, td {
       border: 1px solid #ccc;
@@ -131,35 +133,49 @@
       background-color: #e9f1fa;
     }
     tr:hover {
-      background-color: #f5faff;
+      background-color: #f9fbff;
+    }
+
+    /* New delete button style */
+    .delete-btn {
+      background-color: #e74c3c;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    .delete-btn:hover {
+      background-color: #c0392b;
     }
   </style>
 </head>
 <body>
 
-<!-- Updated header -->
+<!-- Header -->
 <div class="header">
   <div class="logo">
     <a href="#"><img src="https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/logo1010.png" alt="全国校外培训统一监管平台"></a>
   </div>
   <div class="menu">
     <ul>
-    <li><a href="dashboard.html" style="color: white; text-decoration: none;">首页</a></li>
-      <li style="font-weight: bold;">课程管理</li>
-      <li>报名管理</li>
-      <li>数据统计</li>
-      <li>系统设置</li>
+      <li onclick="window.location.href='dashboard.html'">首页</li>
+      <li onclick="window.location.href='通知管理.html'">通知管理</li>
+      <li onclick="window.location.href='经营管理.html'">经营管理</li>
+      <li onclick="window.location.href='执法监控.html'">执法监控</li>
+      <li onclick="window.location.href='风险预警.html'">风险预警</li>
     </ul>
   </div>
   <div class="top-right">
     <div class="dropdown" id="helpDropdown">
       <span>帮助 ▼</span>
       <div class="dropdown-menu">
-    <em onclick="window.location.href='faq.html'">常见问题</em>
-    <em>操作教程</em>
-    <em onclick="window.location.href='意见反馈.html'">意见反馈</em>
-  </div>
-
+        <em onclick="location.href='faq.html'">常见问题</em>
+        <em onclick="location.href='操作教程.html'">操作教程</em>
+        <em onclick="location.href='feedback.html'">意见反馈</em>
+      </div>
     </div>
     <button class="customer-btn" id="customerServiceBtn">培训机构官方客服</button>
     <div class="dropdown" id="companyDropdown">
@@ -172,57 +188,38 @@
   </div>
 </div>
 
-<!-- Main content -->
+<!-- Main -->
 <div class="container">
-  <h2>添加新课程</h2>
-  <form id="courseForm">
-    <input type="text" id="courseName" placeholder="课程名称" required>
-    <input type="text" id="courseTime" placeholder="上课时间" required>
-    <input type="text" id="teacher" placeholder="教师姓名" required>
-    <button type="submit" class="btn">添加课程</button>
-  </form>
-
-  <h2>课程列表</h2>
-  <table id="courseTable">
+  <h2>课程管理</h2>
+  <table>
     <thead>
       <tr>
         <th>课程名称</th>
-        <th>上课时间</th>
+        <th>简介</th>
         <th>教师</th>
-        <th>操作</th>
+        <th>类别</th>
+        <th>开始日期</th>
+        <th>时长（小时）</th>
+        <th>操作</th> <!-- New column for delete button -->
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>美术基础</td>
-        <td>每周一 14:00</td>
-        <td>李老师</td>
-        <td>
-          <button class="btn">编辑</button>
-          <button class="btn" onclick="deleteRow(this)">删除</button>
-        </td>
-      </tr>
+    <tbody id="courseTableBody">
+      <!-- Content will be populated from localStorage -->
     </tbody>
   </table>
 </div>
 
-<!-- Dropdown logic -->
 <script>
-  function toggleDropdown(id) {
-    const dropdown = document.getElementById(id);
-    const isOpen = dropdown.classList.contains('open');
-    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-    if (!isOpen) dropdown.classList.add('open');
-  }
-
-  document.getElementById('helpDropdown').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleDropdown('helpDropdown');
+  // Dropdown handling
+  document.querySelectorAll('.dropdown').forEach(drop => {
+    drop.addEventListener('click', e => {
+      e.stopPropagation();
+      document.querySelectorAll('.dropdown').forEach(d => d !== drop && d.classList.remove('open'));
+      drop.classList.toggle('open');
+    });
   });
-
-  document.getElementById('companyDropdown').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleDropdown('companyDropdown');
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
   });
 
   document.getElementById('logoutBtn').addEventListener('click', () => {
@@ -230,40 +227,43 @@
   });
 
   document.getElementById('customerServiceBtn').addEventListener('click', () => {
-    alert('打开培训机构官方客服窗口');
+    alert("打开培训机构官方客服窗口");
   });
 
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-  });
+  // Load courses from localStorage
+  let courses = JSON.parse(localStorage.getItem('courses') || '[]');
+  const tbody = document.getElementById('courseTableBody');
 
-  const form = document.getElementById('courseForm');
-  const table = document.getElementById('courseTable').getElementsByTagName('tbody')[0];
+  function renderCourses() {
+    tbody.innerHTML = ''; // Clear existing rows
+    courses.forEach((course, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${course.name}</td>
+        <td>${course.description}</td>
+        <td>${course.teacher}</td>
+        <td>${course.category}</td>
+        <td>${course.startDate}</td>
+        <td>${course.duration}</td>
+        <td><button class="delete-btn" data-index="${index}">删除</button></td>
+      `;
+      tbody.appendChild(row);
+    });
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const name = document.getElementById('courseName').value;
-    const time = document.getElementById('courseTime').value;
-    const teacher = document.getElementById('teacher').value;
-
-    const row = table.insertRow();
-    row.innerHTML = `
-      <td>${name}</td>
-      <td>${time}</td>
-      <td>${teacher}</td>
-      <td>
-        <button class="btn">编辑</button>
-        <button class="btn" onclick="deleteRow(this)">删除</button>
-      </td>
-    `;
-
-    form.reset();
-  });
-
-  function deleteRow(button) {
-    const row = button.parentNode.parentNode;
-    row.remove();
+    // Attach event listeners to all delete buttons
+    tbody.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const idx = e.target.getAttribute('data-index');
+        if (idx !== null) {
+          courses.splice(idx, 1); // Remove course from array
+          localStorage.setItem('courses', JSON.stringify(courses)); // Save updated array
+          renderCourses(); // Re-render table
+        }
+      });
+    });
   }
+
+  renderCourses();
 </script>
 </body>
 </html>

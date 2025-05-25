@@ -2,15 +2,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>意见反馈</title>
+  <title>通知管理 - 校外活动平台</title>
   <style>
-  .container {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-
     body, html {
       margin: 0;
       padding: 0;
@@ -18,7 +11,6 @@
       background: #f4f6f9;
     }
     .header {
-      position: relative;
       background: #2b68c6;
       color: white;
       height: 60px;
@@ -37,18 +29,19 @@
     }
     .header .menu ul {
       list-style: none;
-      margin: 0; padding: 0;
       display: flex;
       gap: 30px;
+      padding: 0;
+      margin: 0;
     }
     .header .menu ul li {
+      color: white;
       cursor: pointer;
     }
-    .header .top-right {
+    .top-right {
       display: flex;
-      align-items: center;
       gap: 25px;
-      position: relative;
+      align-items: center;
     }
     .dropdown {
       position: relative;
@@ -85,77 +78,90 @@
     }
     .customer-btn {
       background: url('https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/kf_tool.png') no-repeat 10px center;
+      background-size: 24px 24px;
       padding-left: 40px;
       height: 36px;
       line-height: 36px;
-      background-size: 24px 24px;
       color: white;
       border: none;
       cursor: pointer;
       font-size: 14px;
     }
+
     .container {
+      max-width: 1000px;
+      margin: 30px auto;
       padding: 30px;
-    }
-    form {
       background: white;
-      padding: 20px;
       border-radius: 8px;
-      max-width: 600px;
-      margin: auto;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    form label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      gap: 20px;
     }
-    form input, form textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    form button {
-      margin-top: 20px;
+    .button-row button {
+      flex: 1 1 calc(25% - 20px);
+      min-width: 200px;
+      padding: 16px;
+      font-size: 16px;
       background-color: #2b68c6;
       color: white;
-      padding: 10px 20px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-    form button:hover {
+    .button-row button:hover {
       background-color: #1f4fa0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #e9f1fa;
+    }
+    tr:hover {
+      background-color: #f9fbff;
     }
   </style>
 </head>
 <body>
 
-<!-- Header with dropdowns -->
+<!-- Header -->
 <div class="header">
   <div class="logo">
-    <a href="#"><img src="https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/logo1010.png" alt="全国校外培训统一监管平台"></a>
+    <a href="dashboard.html">
+      <img src="https://static.xwpx.eduyun.cn/service_system_edu/system/train_supervision_platform/images/logo1010.png" alt="平台 Logo">
+    </a>
   </div>
   <div class="menu">
     <ul>
       <li onclick="location.href='dashboard.html'">首页</li>
-      <li onclick="location.href='通知管理.html'">通知管理</li>
-      <li onclick="location.href='经营管理.html'">经营管理</li>
-      <li onclick="location.href='执法监控.html'">执法监控</li>
-      <li onclick="location.href='风险预警.html'">风险预警</li>
+      <li style="font-weight: bold;">通知管理</li>
+      <li onclick="location.href='signup.html'">经营管理</li>
+      <li onclick="location.href='stats.html'">执法监控</li>
+      <li onclick="location.href='settings.html'">风险预警</li>
     </ul>
   </div>
-
-
-
   <div class="top-right">
     <div class="dropdown" id="helpDropdown">
       <span>帮助 ▼</span>
       <div class="dropdown-menu">
         <em onclick="location.href='faq.html'">常见问题</em>
         <em onclick="location.href='操作教程.html'">操作教程</em>
-        <em onclick="location.href='feedback.html'">意见反馈</em>
+        <em onclick="location.href='意见反馈.html'">意见反馈</em>
       </div>
     </div>
     <button class="customer-btn" id="customerServiceBtn">培训机构官方客服</button>
@@ -169,58 +175,74 @@
   </div>
 </div>
 
-<!-- Feedback form -->
+<!-- Content -->
 <div class="container">
-  <h1>意见反馈</h1>
-  <p>请填写以下信息并提交您的意见或建议：</p>
-</div>
+  <h2>通知管理</h2>
 
-  <form>
-    <label for="name">您的姓名：</label>
-    <input type="text" id="name" name="name" required />
+  <div class="button-row">
+    <button onclick="location.href='预警处理1.html'">预警处理</button>
+    <button onclick="location.href='退款处理.html'">退款处理</button>
+    <button onclick="location.href='课程变动.html'">课程变动</button>
+    <button onclick="location.href='反馈评价.html'">反馈评价</button>
+  </div>
 
-    <label for="email">联系方式（邮箱/电话）：</label>
-    <input type="email" id="email" name="email" required />
-
-    <label for="feedback">反馈内容：</label>
-    <textarea id="feedback" name="feedback" rows="6" required></textarea>
-
-    <button type="submit">提交反馈</button>
-  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>标题</th>
+        <th>类型</th>
+        <th>内容摘要</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2025-05-24</td>
+        <td>新课程发布通知</td>
+        <td>通知公告</td>
+        <td>关于暑期课程计划，请查收安排表...</td>
+      </tr>
+      <tr>
+        <td>2025-05-23</td>
+        <td>教育部政策更新</td>
+        <td>政策更新</td>
+        <td>根据新规，课后服务需提前备案...</td>
+      </tr>
+      <tr>
+        <td>2025-05-22</td>
+        <td>课程时间调整</td>
+        <td>课程变动</td>
+        <td>下周一“数学提高班”时间改为下午...</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <script>
-  function toggleDropdown(id) {
-    const dropdown = document.getElementById(id);
-    const isOpen = dropdown.classList.contains('open');
-    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-    if (!isOpen) dropdown.classList.add('open');
-  }
-
-  document.getElementById('helpDropdown').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleDropdown('helpDropdown');
+  // Dropdown toggle
+  document.querySelectorAll('.dropdown').forEach(drop => {
+    drop.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== drop) d.classList.remove('open');
+      });
+      drop.classList.toggle('open');
+    });
   });
 
-  document.getElementById('companyDropdown').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleDropdown('companyDropdown');
-  });
-
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-    window.location.href = "login.html";
+  // Click outside to close
+  window.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
   });
 
   document.getElementById('customerServiceBtn').addEventListener('click', () => {
     alert('打开培训机构官方客服窗口');
   });
 
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
-  });
-
-  //  Redirect 首页 to dashboard.html
-  document.querySelector('.menu ul li:nth-child(1)').addEventListener('click', () => {
-    window.location.href = "dashboard.html";
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    window.location.href = "login.html";
   });
 </script>
+
+</body>
+</html>
